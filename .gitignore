@@ -1,0 +1,18 @@
+# Arquivos e diretórios específicos para Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos gerados pelo Streamlit
+streamlit/.streamlit/
+streamlit/*.pyc
+streamlit/*.pyo
+streamlit/*.pyd
+
+# Arquivos gerados pelo sistema de gastos mensais
+gastos.csv
+
+# Ambientes virtuais do Python
+venv/
+env/
