@@ -7,7 +7,7 @@ import pandas as pd
 
 import main
 
-from projeto import (
+from main import (
     adicionar_despesa,
     editar_despesa,
     excluir_despesa,
