@@ -72,7 +72,7 @@ def filtrar_despesas(mes, categoria):
         rows = list(reader)
 
     df = pd.DataFrame(rows, columns=["Descrição", "Valor", "Data", "Categoria"])
-    df["Data"] = pd.to_datetime(df["Data"])
+    df["Data"] = pd.to_datetime(df["Data"], format='mixed')
 
     if mes:
         df = df[df["Data"].dt.month == int(mes)]
@@ -145,7 +145,6 @@ def main():
         "Editar Despesa",
         "Excluir Despesa",
         "Visualizar Despesas",
-        "Análise de Dados",
     ]
     escolha = st.sidebar.selectbox("Selecione uma opção", opcoes)
 
@@ -234,10 +233,6 @@ def main():
                 st.warning("Nenhuma despesa encontrada com os filtros selecionados!")
         else:
             st.warning("Nenhuma despesa encontrada!")
-
-    elif escolha == "Análise dos Dados":
-        st.header("Análise dos Dados")
-        gerar_estatisticas()
 
 
 if __name__ == "__main__":
