@@ -1,7 +1,7 @@
 # Sistema de Gastos Mensais
 
 ## Descrição do Projeto
-O Sistema de Gastos Mensais é uma aplicação simples desenvolvida utilizando o Streamlit. Ele permite aos usuários registrar, editar, excluir e visualizar despesas mensais. Os dados são salvos localmente em um arquivo CSV. Além disso, o sistema oferece funcionalidades de análise exploratória de dados, incluindo estatísticas e visualizações gráficas dos gastos por categoria e ao longo do tempo.
+O Sistema de Gastos Mensais é uma aplicação simples desenvolvida utilizando o Streamlit. Ele permite aos usuários registrar, editar, excluir e visualizar despesas mensais. Os dados são salvos localmente em um arquivo CSV. Além disso, o sistema oferece funcionalidades de análise de dados, incluindo estatísticas e visualizações gráficas dos gastos por categoria e ao longo do tempo.
 
 ## Funcionalidades
 
@@ -20,7 +20,7 @@ O Sistema de Gastos Mensais é uma aplicação simples desenvolvida utilizando o
 
 2. Clone o repositório para o seu ambiente local.
 ```
-git clone
+git clone git@github.com:2wo-Labs/crud-sistema-gastos-mensais.git
 ```
 
 3. Instale as dependências usando o comando:
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 4. Execute o aplicativo utilizando o comando:
 ```
-streamlit run main.py
+streamlit run app.py
 ```
 
 5. O aplicativo será aberto em seu navegador padrão. Você pode interagir com as diferentes funcionalidades do sistema.

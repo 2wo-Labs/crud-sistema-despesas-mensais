@@ -145,7 +145,7 @@ def main():
         "Editar Despesa",
         "Excluir Despesa",
         "Visualizar Despesas",
-        "Análise Exploratória",
+        "Análise de Dados",
     ]
     escolha = st.sidebar.selectbox("Selecione uma opção", opcoes)
 
@@ -235,8 +235,8 @@ def main():
         else:
             st.warning("Nenhuma despesa encontrada!")
 
-    elif escolha == "Análise Exploratória":
-        st.header("Análise Exploratória de Dados")
+    elif escolha == "Análise dos Dados":
+        st.header("Análise dos Dados")
         gerar_estatisticas()
 
 
