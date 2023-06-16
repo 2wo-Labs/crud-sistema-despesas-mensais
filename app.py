@@ -1,9 +1,15 @@
 import streamlit as st
 import csv
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import datetime
 import chardet
+
+from operacoes import (
+    adicionar_despesa,
+    editar_despesa,
+    excluir_despesa,
+    filtrar_despesas,
+)
 
 
 CATEGORIAS = [
@@ -32,69 +38,9 @@ MESES = {
 }
 
 
-# Função para formatar a data
 def formatar_data(data):
     dia, mes, ano = data.split("/")
     return f"{dia}/{MESES[mes]}/{ano}"
-
-
-def adicionar_despesa(descricao, valor, data, categoria):
-    with open("gastos.csv", "a", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        writer.writerow([descricao, valor, data, categoria])
-
-
-def editar_despesa(index, descricao, valor, data, categoria):
-    with open("gastos.csv", "r", newline="", encoding="utf-8") as file:
-        rows = list(csv.reader(file))
-    rows[index] = [descricao, valor, data, categoria]
-    with open("gastos.csv", "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerows(rows)
-
-
-def excluir_despesa(index):
-    with open("gastos.csv", "r", newline="", encoding="utf-8") as file:
-        rows = list(csv.reader(file))
-    del rows[index]
-    with open("gastos.csv", "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerows(rows)
-
-
-def filtrar_despesas(mes, categoria):
-    with open("gastos.csv", "rb") as file:
-        result = chardet.detect(file.read())
-    encoding = result["encoding"]
-
-    with open("gastos.csv", "r", newline="", encoding=encoding) as file:
-        reader = csv.reader(file)
-        rows = list(reader)
-
-    df = pd.DataFrame(rows, columns=["Descrição", "Valor", "Data", "Categoria"])
-    df["Data"] = pd.to_datetime(df["Data"], format='mixed')
-
-    if mes:
-        df = df[df["Data"].dt.month == int(mes)]
-    if categoria:
-        df = df[df["Categoria"] == categoria]
-
-    if not df.empty:
-        df["Data"] = df["Data"].dt.strftime("%d/%m/%Y")
-        df = df.rename(
-            columns={
-                "Descrição": "Descrição",
-                "Valor": "Valor",
-                "Data": "Data",
-                "Categoria": "Categoria",
-            }
-        )
-
-        
-        return df.to_dict("records")
-
-    return []
-
 
 
 def main():
@@ -191,7 +137,7 @@ def main():
                 st.table(rows)
             else:
                 st.warning("Nenhuma despesa encontrada com os filtros selecionados!")
-            
+
             with open("gastos.csv", "rb") as file:
                 result = chardet.detect(file.read())
             encoding = result["encoding"]
