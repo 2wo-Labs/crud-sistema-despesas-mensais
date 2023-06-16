@@ -89,52 +89,12 @@ def filtrar_despesas(mes, categoria):
                 "Categoria": "Categoria",
             }
         )
+
+        
         return df.to_dict("records")
 
     return []
 
-
-def gerar_estatisticas():
-    with open("gastos.csv", "rb") as file:
-        result = chardet.detect(file.read())
-    encoding = result["encoding"]
-
-    with open("gastos.csv", "r", newline="", encoding=encoding) as file:
-        reader = csv.reader(file)
-        rows = list(reader)
-    df = pd.DataFrame(rows, columns=["Descrição", "Valor", "Data", "Categoria"])
-    df["Valor"] = df["Valor"].astype(float)
-    valores = [float(row[1]) for row in rows]
-    total = sum(valores)
-    media = total / len(valores)
-    maior_valor = max(valores)
-
-    st.subheader("Total de Gastos")
-    total = df["Valor"].sum()
-    menor_valor = min(valores)
-    st.write(f"Total: R$ {total:.2f}")
-    st.write(f"Média: R$ {media:.2f}")
-    st.write(f"Maior valor: R$ {maior_valor:.2f}")
-    st.write(f"Menor valor: R$ {menor_valor:.2f}")
-
-    st.subheader("Gastos por Categoria")
-    gastos_por_categoria = df.groupby("Categoria")["Valor"].sum()
-    st.bar_chart(gastos_por_categoria)
-
-    st.subheader("Média de Gastos por Categoria")
-    media_por_categoria = df.groupby("Categoria")["Valor"].mean()
-    st.bar_chart(media_por_categoria)
-
-    st.subheader("Visualização dos Gastos por Categoria")
-    fig, ax = plt.subplots()
-    ax.pie(
-        gastos_por_categoria,
-        labels=gastos_por_categoria.index,
-        autopct="%1.1f%%",
-        startangle=90,
-    )
-    ax.axis("equal")
-    st.pyplot(fig)
 
 
 def main():
@@ -231,6 +191,28 @@ def main():
                 st.table(rows)
             else:
                 st.warning("Nenhuma despesa encontrada com os filtros selecionados!")
+            
+            with open("gastos.csv", "rb") as file:
+                result = chardet.detect(file.read())
+            encoding = result["encoding"]
+
+            with open("gastos.csv", "r", newline="", encoding=encoding) as file:
+                reader = csv.reader(file)
+                rows = list(reader)
+            df = pd.DataFrame(rows, columns=["Descrição", "Valor", "Data", "Categoria"])
+            df["Valor"] = df["Valor"].astype(float)
+            valores = [float(row[1]) for row in rows]
+            total = sum(valores)
+            media = total / len(valores)
+            maior_valor = max(valores)
+
+            st.subheader("Total de Gastos")
+            total = df["Valor"].sum()
+            menor_valor = min(valores)
+            st.write(f"Total: R$ {total:.2f}")
+            st.write(f"Média: R$ {media:.2f}")
+            st.write(f"Maior valor: R$ {maior_valor:.2f}")
+            st.write(f"Menor valor: R$ {menor_valor:.2f}")
         else:
             st.warning("Nenhuma despesa encontrada!")
 
