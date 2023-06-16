@@ -1,7 +1,7 @@
 # Sistema de Despesas Mensais
 
 ## Descrição do Projeto
-O Sistema de Gastos Mensais é uma aplicação simples desenvolvida utilizando o Streamlit. Ele permite aos usuários registrar, editar, excluir e visualizar despesas mensais. Os dados são salvos localmente em um arquivo CSV.
+O Sistema de Despesas Mensais é uma aplicação simples desenvolvida utilizando o Streamlit. Ele permite aos usuários registrar, editar, excluir e visualizar despesas mensais. Os dados são salvos localmente em um arquivo CSV.
 
 ## Como Executar
 
