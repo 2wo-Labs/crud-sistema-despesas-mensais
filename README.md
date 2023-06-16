@@ -96,7 +96,6 @@ Na página de visualização de despesas, você pode filtrar as despesas por mê
 O sistema depende das seguintes bibliotecas Python:
 
 - pandas
-- matplotlib
 - chardet
 - streamlit
 
