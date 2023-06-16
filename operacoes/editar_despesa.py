@@ -1,5 +1,6 @@
 import csv
 
+
 def editar_despesa(index, descricao, valor, data, categoria):
     with open("../gastos.csv", "r", newline="", encoding="utf-8") as file:
         rows = list(csv.reader(file))
